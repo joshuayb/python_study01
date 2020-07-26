@@ -22,24 +22,31 @@ for word in a:
 selected_word = a1[randint(0, len(a)-1)]
 #print(selected_word)
 
-t_guess = 9
+t_guess = 10
 num_guess = 1
-match_board = ['*'] * len(selected_word)
-print(match_board)
+match_board = ['-'] * len(selected_word)
+print("".join(match_board))
 while num_guess < t_guess + 1:
+    print('')
     guess = input('Guess! ==> ')
+    print('')
+    if guess in match_board:
+        print('You already guessed the letter.')
     j = 0
     for l in selected_word:
         if guess == l:
             match_board[j] = guess
         j += 1
+    print("'" + guess + "'" + ' frequecy: ' + str(selected_word.count(guess)))
     if match_board == selected_word:
-        print('Congratulaions!')
         print("".join(selected_word))
+        print('')
+        print('Congratulaions!')
         break
     num_guess += 1
-    print(match_board)
-    print('number of guess: ' + str(num_guess))
+    print("".join(match_board))
+    print('')
+    print('number of guess: ' + str(num_guess - 1))
     if num_guess == t_guess:
         print('The last chance!')
     if num_guess == t_guess + 1:
