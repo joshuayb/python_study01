@@ -17,15 +17,15 @@ for word in a:
     for letter in word:
         b.append(letter)
     a1.append(b)
-#print(a1)
 
 selected_word = a1[randint(0, len(a)-1)]
-#print(selected_word)
+vowels = ['a', 'e', 'i', 'o', 'u']
 
+credit = 100
 t_guess = 10
 num_guess = 1
 match_board = ['-'] * len(selected_word)
-print("".join(match_board))
+print(str(len(selected_word)) + '-letter word ' + "".join(match_board))
 while num_guess < t_guess + 1:
     print('')
     guess = input('Guess! ==> ')
@@ -42,11 +42,29 @@ while num_guess < t_guess + 1:
         print("".join(selected_word))
         print('')
         print('Congratulaions!')
+        credit += 200 + (t_guess - num_guess) * 10
+        print(credit)
         break
     num_guess += 1
+    if guess in vowels:
+        credit -= 30 
+    else:
+        credit -= 10
     print("".join(match_board))
     print('')
     print('number of guess: ' + str(num_guess - 1))
+    print(credit)
+    if num_guess == 6: 
+        open = 'open'
+        while open.isnumeric() == False:
+            open = input('open a letter! ==> ') # select a letter to open
+            if open.isnumeric() == False:
+                print('Please input number.')
+            else:
+                match_board[int(open)] = selected_word[int(open)]
+                print("".join(match_board)) # show the match board with an opened letter    
+                if open == 0:
+                    credit -= 50
     if num_guess == t_guess:
         print('The last chance!')
     if num_guess == t_guess + 1:
