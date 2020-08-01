@@ -61,14 +61,22 @@ while num_guess < t_guess + 1:
     if num_guess == 6: 
         open = 'open'
         while open.isnumeric() == False:
-            open = input('open a letter! ==> ') # select a letter to open
+            print('')
+            open = input('Open a letter! (input which letter you want to open) ==> ') # select a letter to open
             if open.isnumeric() == False:
+                print('')
                 print('Please input number.')
             else:
                 match_board[int(open)] = selected_word[int(open)]
                 print("".join(match_board)) # show the match board with an opened letter    
-                if open == 0:
-                    credit -= 75
+        if int(open) == 0:
+            credit -= 75
+        elif int(open) == 1:
+            credit -= 25
+        else:
+            int(open) >= 2
+            credit -= 10
+        print(credit)
     if num_guess == t_guess:
         print('The last chance!')
     if num_guess == t_guess + 1:
